@@ -11,9 +11,6 @@ var location_1 = {
   },
   calculateCookieSales: function(){
     var allHours = [];
-    //var salesPerHour;
-    //var salesPerHourToArray;
-    //var salesWithTimes = [];
     var totalSales = 0;
 
     for (var i = 0; i < (this.closeTime - this.openTime); i++){
@@ -22,28 +19,28 @@ var location_1 = {
       totalSales = totalSales + salesPerHour;
     }
     allHours.push(totalSales);
-    // for (var i = this.openTime; i < this.closeTime; i++){
-    //   if(i < 12){
-    //     salesPerHourToArray = i + 'am: ' + allHours[i] + 'cookies';
-    //   }else if(i === 12){
-    //     salesPerHourToArray = i + 'pm: ' + allHours[i] + 'cookies';
-    //   }else{
-    //     salesPerHourToArray = (i - 12) + 'pm:' + allHours[i] + 'cookies';
-    //   }
-    //   salesWithTimes.push(salesPerHourToArray);
-    // }
-    // //var totalSales =
-    // return salesWithTimes
     return allHours;
   },
+
   display: function(){
+    var timesOpenAndTotal = [];
+    for (var i = this.openTime; i < this.closeTime + 1; i++){
+      if(i < 12){
+        timesOpenAndTotal.push(i + 'am: ');
+      }else if(i === 12){
+        timesOpenAndTotal.push(i + 'pm: ');
+      }else if(i === this.closeTime){
+        timesOpenAndTotal.push('Total:');
+      }else{
+        timesOpenAndTotal.push((i - 12) + 'pm:');
+      }
+    }
+
     var store = document.getElementById('LocationOne');
     store.textContent = this.locationName;
-    a = [];
-
-    for(var i = 0; i < a.length; i++){
+    for(var i = 0; i < timesOpenAndTotal.length; i++){
       var list = document.createElement('li');
-      list.textContent = a[i];
+      list.textContent = timesOpenAndTotal[i] + this.calculateCookieSales()[i] + ' cookies';
       store.appendChild(list);
     }
   }
