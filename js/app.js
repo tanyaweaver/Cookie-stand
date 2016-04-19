@@ -7,8 +7,8 @@ var location_1 = {
   cookiePerSale: 5.2,
 
   calculateCustomerPerHour: function(){
-    var customerPerHourRandom = Math.floor(Math.random() * (this.maxCustomers - (this.minCustomers + 1)) + this.minCustomers);
-    return customerPerHourRandom;
+    return Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1) + this.minCustomers);
+
   },
 
   calculateCookieSales: function(){
