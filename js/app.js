@@ -8,7 +8,6 @@ var location_1 = {
 
   calculateCustomerPerHour: function(){
     return Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1) + this.minCustomers);
-
   },
 
   calculateCookieSales: function(){
@@ -39,7 +38,7 @@ var location_1 = {
       }
     }
 
-    var store = document.getElementById('LocationOne');
+    var store = document.getElementById('location-one');
     store.textContent = this.locationName;
     for(var i = 0; i < timesOpenAndTotal.length; i++){
       var list = document.createElement('li');
@@ -88,7 +87,7 @@ var location_2 = {
       }
     }
 
-    var store = document.getElementById('LocationTwo');
+    var store = document.getElementById('location-two');
     store.textContent = this.locationName;
     for(var i = 0; i < timesOpenAndTotal.length; i++){
       var list = document.createElement('li');
@@ -137,7 +136,7 @@ var location_3 = {
       }
     }
 
-    var store = document.getElementById('LocationThree');
+    var store = document.getElementById('location-three');
     store.textContent = this.locationName;
     for(var i = 0; i < timesOpenAndTotal.length; i++){
       var list = document.createElement('li');
@@ -186,7 +185,7 @@ var location_4 = {
       }
     }
 
-    var store = document.getElementById('LocationFour');
+    var store = document.getElementById('location-four');
     store.textContent = this.locationName;
     for(var i = 0; i < timesOpenAndTotal.length; i++){
       var list = document.createElement('li');
@@ -235,7 +234,7 @@ var location_5 = {
       }
     }
 
-    var store = document.getElementById('LocationFive');
+    var store = document.getElementById('location-five');
     store.textContent = this.locationName;
     for(var i = 0; i < timesOpenAndTotal.length; i++){
       var list = document.createElement('li');
