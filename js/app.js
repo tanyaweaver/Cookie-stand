@@ -1,16 +1,17 @@
-var location_1 = {
-  locationName: 'Pike Place',
-  openTime: 6,
-  closeTime: 21,
-  minCustomers: 17,
-  maxCustomers: 88,
-  cookiePerSale: 5.2,
+var allStores = [];
+function Location_1 (locationName,minCustomers,maxCustomers,cookiePerSale){
+  this.locationName = locationName;
+  this.openTime = 6;
+  this.closeTime = 21;
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.cookiePerSale = cookiePerSale;
 
-  calculateCustomerPerHour: function(){
+  this.calculateCustomerPerHour = function(){
     return Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1) + this.minCustomers);
-  },
+  };
 
-  calculateCookieSales: function(){
+  this.calculateCookieSales = function(){
     var allHours = []; //Array with sales for each hour, no time points included
     var totalSales = 0; //summing up elements of the array allHours[]
     var salesPerHour;
@@ -22,225 +23,65 @@ var location_1 = {
     }
     allHours.push(totalSales); //adding total sales for the day to the end of the array
     return allHours;
-  },
-
-  display: function(){
-    var timesOpenAndTotal = []; //Array with every hour listed with am/pm and 'Total' at the end
-    for (var i = this.openTime; i <= this.closeTime; i++){
-      if(i < 12){
-        timesOpenAndTotal.push(i + 'am: ');
-      }else if(i === 12){
-        timesOpenAndTotal.push(i + 'pm: ');
-      }else if(i === this.closeTime){
-        timesOpenAndTotal.push('Total: ');
-      }else{
-        timesOpenAndTotal.push((i - 12) + 'pm: ');
-      }
-    }
-
-    var store = document.getElementById('location-one');
-    store.textContent = this.locationName;
-    for(var i = 0; i < timesOpenAndTotal.length; i++){
-      var list = document.createElement('li');
-      list.textContent = timesOpenAndTotal[i] + this.calculateCookieSales()[i] + ' cookies';
-      store.appendChild(list);
-    }
-  }
+  };
 };
-location_1.display();
 
-var location_2 = {
-  locationName: 'Sea Tac Airport',
-  openTime: 6,
-  closeTime: 21,
-  minCustomers: 6,
-  maxCustomers: 24,
-  cookiePerSale: 1.2,
-  calculateCustomerPerHour: function(){
-    var customerPerHourRandom = Math.floor(Math.random() * (this.maxCustomers - (this.minCustomers + 1)) + this.minCustomers);
-    return customerPerHourRandom;
-  },
-  calculateCookieSales: function(){
-    var allHours = [];
-    var totalSales = 0;
-
-    for (var i = 0; i < (this.closeTime - this.openTime); i++){
-      salesPerHour = Math.floor(this.calculateCustomerPerHour() * this.cookiePerSale);
-      allHours.push(salesPerHour);
-      totalSales = totalSales + salesPerHour;
+var timesOpenAndTotal = []; //Array with every hour listed with am/pm and 'Total' at the end
+function timeAndTotalArray(openTime,closeTime) {
+  for (var i = openTime; i <= closeTime; i++){
+    if(i < 12){
+      timesOpenAndTotal.push(i + 'am');
+    }else if(i === 12){
+      timesOpenAndTotal.push(i + 'pm');
+    }else if(i === closeTime){
+      timesOpenAndTotal.push('Total');
+    }else{
+      timesOpenAndTotal.push((i - 12) + 'pm');
     }
-    allHours.push(totalSales);
-    return allHours;
-  },
+  };
+  return timesOpenAndTotal;
+}
 
-  display: function(){
-    var timesOpenAndTotal = [];
-    for (var i = this.openTime; i <= this.closeTime; i++){
-      if(i < 12){
-        timesOpenAndTotal.push(i + 'am: ');
-      }else if(i === 12){
-        timesOpenAndTotal.push(i + 'pm: ');
-      }else if(i === this.closeTime){
-        timesOpenAndTotal.push('Total: ');
-      }else{
-        timesOpenAndTotal.push((i - 12) + 'pm: ');
-      }
-    }
+timeAndTotalArray(6,21);
 
-    var store = document.getElementById('location-two');
-    store.textContent = this.locationName;
-    for(var i = 0; i < timesOpenAndTotal.length; i++){
-      var list = document.createElement('li');
-      list.textContent = timesOpenAndTotal[i] + this.calculateCookieSales()[i] + ' cookies';
-      store.appendChild(list);
-    }
+function displayHeader() {
+  var appendHeader = document.getElementById('header');
+  var tr = document.createElement('tr');
+  var th = document.createElement('th');
+  th.textContent = ('Location');
+  tr.appendChild(th);
+  appendHeader.appendChild(tr);
+  for (var i = 0; i < timesOpenAndTotal.length; i++) {
+    var th = document.createElement('th');
+    th.textContent = timesOpenAndTotal[i];
+    tr.appendChild(th);
   }
-};
-location_2.display();
+}
 
-var location_3 = {
-  locationName: 'Southcenter',
-  openTime: 6,
-  closeTime: 21,
-  minCustomers: 11,
-  maxCustomers: 38,
-  cookiePerSale: 1.9,
-  calculateCustomerPerHour: function(){
-    var customerPerHourRandom = Math.floor(Math.random() * (this.maxCustomers - (this.minCustomers + 1)) + this.minCustomers);
-    return customerPerHourRandom;
-  },
-  calculateCookieSales: function(){
-    var allHours = [];
-    var totalSales = 0;
+displayHeader();
 
-    for (var i = 0; i < (this.closeTime - this.openTime); i++){
-      salesPerHour = Math.floor(this.calculateCustomerPerHour() * this.cookiePerSale);
-      allHours.push(salesPerHour);
-      totalSales = totalSales + salesPerHour;
-    }
-    allHours.push(totalSales);
-    return allHours;
-  },
+function displaySales(location) {
+  var appendRow = document.getElementById('sales');
+  var tr = document.createElement('tr');
+  var th = document.createElement('th');
+  th.textContent = location.locationName;
+  tr.appendChild(th);
+  appendRow.appendChild(tr);
 
-  display: function(){
-    var timesOpenAndTotal = [];
-    for (var i = this.openTime; i <= this.closeTime; i++){
-      if(i < 12){
-        timesOpenAndTotal.push(i + 'am: ');
-      }else if(i === 12){
-        timesOpenAndTotal.push(i + 'pm: ');
-      }else if(i === this.closeTime){
-        timesOpenAndTotal.push('Total: ');
-      }else{
-        timesOpenAndTotal.push((i - 12) + 'pm: ');
-      }
-    }
-
-    var store = document.getElementById('location-three');
-    store.textContent = this.locationName;
-    for(var i = 0; i < timesOpenAndTotal.length; i++){
-      var list = document.createElement('li');
-      list.textContent = timesOpenAndTotal[i] + this.calculateCookieSales()[i] + ' cookies';
-      store.appendChild(list);
-    }
+  for (var i = 0; i < location.calculateCookieSales().length; i++) {
+    td = document.createElement('td');
+    td.textContent = location.calculateCookieSales()[i];
+    tr.appendChild(td);
   }
-};
-location_3.display();
 
-var location_4 = {
-  locationName: 'Bellevue Square',
-  openTime: 6,
-  closeTime: 21,
-  minCustomers: 20,
-  maxCustomers: 48,
-  cookiePerSale: 3.3,
-  calculateCustomerPerHour: function(){
-    var customerPerHourRandom = Math.floor(Math.random() * (this.maxCustomers - (this.minCustomers + 1)) + this.minCustomers);
-    return customerPerHourRandom;
-  },
-  calculateCookieSales: function(){
-    var allHours = [];
-    var totalSales = 0;
+}
 
-    for (var i = 0; i < (this.closeTime - this.openTime); i++){
-      salesPerHour = Math.floor(this.calculateCustomerPerHour() * this.cookiePerSale);
-      allHours.push(salesPerHour);
-      totalSales = totalSales + salesPerHour;
-    }
-    allHours.push(totalSales);
-    return allHours;
-  },
+allStores.push(new Location_1('Pike Place', 17, 88, 5.2));
+allStores.push(new Location_1('Sea Tac Airport', 6, 24, 1.2));
+allStores.push(new Location_1('South Center', 11, 38, 1.9));
+allStores.push(new Location_1('Bellevue', 20, 48, 3.3));
+allStores.push(new Location_1('Alki', 3, 24, 2.6));
 
-  display: function(){
-    var timesOpenAndTotal = [];
-    for (var i = this.openTime; i <= this.closeTime; i++){
-      if(i < 12){
-        timesOpenAndTotal.push(i + 'am: ');
-      }else if(i === 12){
-        timesOpenAndTotal.push(i + 'pm: ');
-      }else if(i === this.closeTime){
-        timesOpenAndTotal.push('Total: ');
-      }else{
-        timesOpenAndTotal.push((i - 12) + 'pm: ');
-      }
-    }
-
-    var store = document.getElementById('location-four');
-    store.textContent = this.locationName;
-    for(var i = 0; i < timesOpenAndTotal.length; i++){
-      var list = document.createElement('li');
-      list.textContent = timesOpenAndTotal[i] + this.calculateCookieSales()[i] + ' cookies';
-      store.appendChild(list);
-    }
-  }
-};
-location_4.display();
-
-var location_5 = {
-  locationName: 'Alki',
-  openTime: 6,
-  closeTime: 21,
-  minCustomers: 3,
-  maxCustomers: 24,
-  cookiePerSale: 2.6,
-  calculateCustomerPerHour: function(){
-    var customerPerHourRandom = Math.floor(Math.random() * (this.maxCustomers - (this.minCustomers + 1)) + this.minCustomers);
-    return customerPerHourRandom;
-  },
-  calculateCookieSales: function(){
-    var allHours = [];
-    var totalSales = 0;
-
-    for (var i = 0; i < (this.closeTime - this.openTime); i++){
-      salesPerHour = Math.floor(this.calculateCustomerPerHour() * this.cookiePerSale);
-      allHours.push(salesPerHour);
-      totalSales = totalSales + salesPerHour;
-    }
-    allHours.push(totalSales);
-    return allHours;
-  },
-
-  display: function(){
-    var timesOpenAndTotal = [];
-    for (var i = this.openTime; i <= this.closeTime; i++){
-      if(i < 12){
-        timesOpenAndTotal.push(i + 'am: ');
-      }else if(i === 12){
-        timesOpenAndTotal.push(i + 'pm: ');
-      }else if(i === this.closeTime){
-        timesOpenAndTotal.push('Total: ');
-      }else{
-        timesOpenAndTotal.push((i - 12) + 'pm: ');
-      }
-    }
-
-    var store = document.getElementById('location-five');
-    store.textContent = this.locationName;
-    for(var i = 0; i < timesOpenAndTotal.length; i++){
-      var list = document.createElement('li');
-      list.textContent = timesOpenAndTotal[i] + this.calculateCookieSales()[i] + ' cookies';
-      store.appendChild(list);
-    }
-  }
-};
-location_5.display();
+for (var i = 0; i < allStores.length; i++) {
+  displaySales(allStores[i]);
+}
