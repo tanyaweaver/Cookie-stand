@@ -24,6 +24,9 @@ function Location_1 (locationName,minCustomers,maxCustomers,cookiePerSale){
     allHours.push(totalSales); //adding total sales for the day to the end of the array
     return allHours;
   };
+
+  allStores.push(this);
+
 };
 
 var timesOpenAndTotal = []; //Array with every hour listed with am/pm and 'Total' at the end
@@ -60,8 +63,9 @@ function displayHeader() {
 
 displayHeader();
 
+var appendRow = document.getElementById('sales');
+
 function displaySales(location) {
-  var appendRow = document.getElementById('sales');
   var tr = document.createElement('tr');
   var th = document.createElement('th');
   th.textContent = location.locationName;
@@ -74,14 +78,47 @@ function displaySales(location) {
     tr.appendChild(td);
   }
 
-}
+// Location_1.prototype.render = function() {
+//   var appendRow = document.getElementById('sales');
+//   var tr = document.createElement('tr');
+//   var th = document.createElement('th');
+//   th.textContent = this.locationName;
+//   tr.appendChild(th);
+//   appendRow.appendChild(tr);
+//
+//   for (var i = 0; i < this.calculateCookieSales().length; i++) {
+//     td = document.createElement('td');
+//     td.textContent = this.calculateCookieSales()[i];
+//     tr.appendChild(td);
+//   }
 
-allStores.push(new Location_1('Pike Place', 17, 88, 5.2));
-allStores.push(new Location_1('Sea Tac Airport', 6, 24, 1.2));
-allStores.push(new Location_1('South Center', 11, 38, 1.9));
-allStores.push(new Location_1('Bellevue', 20, 48, 3.3));
-allStores.push(new Location_1('Alki', 3, 24, 2.6));
+};
 
+var pikePlace = new Location_1('Pike Place', 17, 88, 5.2);
+var seaTac = new Location_1('Sea Tac Airport', 6, 24, 1.2);
+var sourthCenter = new Location_1('South Center', 11, 38, 1.9);
+var bellevue = new Location_1('Bellevue', 20, 48, 3.3);
+var alki = new Location_1('Alki', 3, 24, 2.6);
 for (var i = 0; i < allStores.length; i++) {
   displaySales(allStores[i]);
+}  //needed so initial data shows
+
+function handleAddChangeStore(event) {
+  event.preventDefault();
+  var store = event.target.store.value;
+  var minCust = parseInt(event.target.minCust.value);
+  var maxCust = parseInt(event.target.maxCust.value);
+  var avgCookies = parseInt(event.target.averageCookies.value);
+
+  appendRow.textContent = ' ';
+
+  var newStore = new Location_1(store, minCust, maxCust, avgCookies);
+  console.log('new store created', newStore);
+  // allStores.push(newStore);
+  for (var i = 0; i < allStores.length; i++) {
+    displaySales(allStores[i]);
+    console.log('New store created.');
+  }
 }
+var salesPage = document.getElementById('sales-stores');
+salesPage.addEventListener('submit', handleAddChangeStore);
