@@ -1,32 +1,28 @@
 var allStores = [];
-function Location_1 (locationName,minCustomers,maxCustomers,cookiePerSale){
+function Location (locationName,minCustomers,maxCustomers,cookiePerSale){
   this.locationName = locationName;
-  this.openTime = 6;
-  this.closeTime = 21;
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
   this.cookiePerSale = cookiePerSale;
-
-  this.calculateCustomerPerHour = function(){
-    return Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1) + this.minCustomers);
-  };
-
-  this.calculateCookieSales = function(){
-    var allHours = []; //Array with sales for each hour, no time points included
-    var totalSales = 0; //summing up elements of the array allHours[]
-    var salesPerHour;
-
-    for (var i = 0; i < (this.closeTime - this.openTime); i++){
-      salesPerHour = Math.floor(this.calculateCustomerPerHour() * this.cookiePerSale);
-      allHours.push(salesPerHour);
-      totalSales = totalSales + salesPerHour;
-    }
-    allHours.push(totalSales); //adding total sales for the day to the end of the array
-    return allHours;
-  };
-
   allStores.push(this);
+}
 
+Location.prototype.calculateCustomerPerHour = function(){
+  return Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
+};
+
+Location.prototype.calculateCookieSales = function(){
+  var allHours = []; //Array with sales for each hour, no time points included
+  var totalSales = 0; //summing up elements of the array allHours[]
+  var salesPerHour;
+
+  for (var i = 0; i < 15; i++){
+    salesPerHour = Math.floor(this.calculateCustomerPerHour() * this.cookiePerSale);
+    allHours.push(salesPerHour);
+    totalSales = totalSales + salesPerHour;
+  }
+  allHours.push(totalSales); //adding total sales for the day to the end of the array
+  return allHours;
 };
 
 var timesOpenAndTotal = []; //Array with every hour listed with am/pm and 'Total' at the end
@@ -77,28 +73,13 @@ function displaySales(location) {
     td.textContent = location.calculateCookieSales()[i];
     tr.appendChild(td);
   }
-
-// Location_1.prototype.render = function() {
-//   var appendRow = document.getElementById('sales');
-//   var tr = document.createElement('tr');
-//   var th = document.createElement('th');
-//   th.textContent = this.locationName;
-//   tr.appendChild(th);
-//   appendRow.appendChild(tr);
-//
-//   for (var i = 0; i < this.calculateCookieSales().length; i++) {
-//     td = document.createElement('td');
-//     td.textContent = this.calculateCookieSales()[i];
-//     tr.appendChild(td);
-//   }
-
 };
 
-var pikePlace = new Location_1('Pike Place', 17, 88, 5.2);
-var seaTac = new Location_1('Sea Tac Airport', 6, 24, 1.2);
-var sourthCenter = new Location_1('South Center', 11, 38, 1.9);
-var bellevue = new Location_1('Bellevue', 20, 48, 3.3);
-var alki = new Location_1('Alki', 3, 24, 2.6);
+var pikePlace = new Location('Pike Place', 17, 88, 5.2);
+var seaTac = new Location('Sea Tac Airport', 6, 24, 1.2);
+var sourthCenter = new Location('South Center', 11, 38, 1.9);
+var bellevue = new Location('Bellevue', 20, 48, 3.3);
+var alki = new Location('Alki', 3, 24, 2.6);
 for (var i = 0; i < allStores.length; i++) {
   displaySales(allStores[i]);
 }  //needed so initial data shows
@@ -112,13 +93,24 @@ function handleAddChangeStore(event) {
 
   appendRow.textContent = ' ';
 
-  var newStore = new Location_1(store, minCust, maxCust, avgCookies);
-  console.log('new store created', newStore);
-  // allStores.push(newStore);
+  var newStore = new Location(store, minCust, maxCust, avgCookies);
+
+//if store already in exists, then update the sales
+  for (var i = 0; i < allStores.length - 1; i++) {
+    if(newStore.locationName === allStores[i].locationName){
+      allStores[i] = newStore; //newStore replaces the line with the same locationName
+      allStores.splice(allStores.length - 1, 1); //remove newStore from the last position in the array
+    }
+  }
   for (var i = 0; i < allStores.length; i++) {
     displaySales(allStores[i]);
-    console.log('New store created.');
+
   }
+  // resetting the html form fields - doesn't work though
+  store = null;
+  minCust = null;
+  maxCust = null;
+  avgCookies = null;
 }
 var salesPage = document.getElementById('sales-stores');
 salesPage.addEventListener('submit', handleAddChangeStore);
