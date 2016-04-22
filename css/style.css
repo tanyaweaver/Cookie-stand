@@ -1,53 +1,120 @@
 *{
-  background-color: #F0F4C3;
+  background-color:#E0E0E0;
 }
+
+p{
+  color: #33691E;
+  font-family: 'Quattrocento', serif;
+  font-size: 20px;
+}
+
 h1{
   font-family: 'Pacifico', cursive;
   color: #880E4F;
   font-size: 50px;
-  padding-left: 28%;
-  background-color: #C0CA33;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-bottom: 0px;
+  margin: 80px 20px 0px 20px;
 }
-#moto{
+
+h2{
+  width: 1400px;
+  font-size: 35px;
   font-family: 'Pacifico', cursive;
   color: #880E4F;
-  padding-left: 25%;
-  font-size: 20px;
-  margin-top: 0px;
-  margin-bottom: 40px;
+  margin: 60px 0px 10px 0px;
+  background-color: #BDBDBD;
+  text-align: center;
+  padding: 15px;
 }
-div{
-  border: 5px solid #AFB42B;
-  ;
-}
-#text {
-  padding-left: 27%;
-  font-size: 20px;
-  font-family: 'Quattrocento', serif;
-  color: #33691E;
-}
-.data {
-  font-family: Verdana;
-}
-img{
-  padding-left: 25%;
-}
-#location{
-  padding-left: 13%;
-  font-size: 35px;
-  border: 5px solid #AFB42B;
-  background-color: #FF8A80;
-  color: #33691E;
-  font-family: 'Quattrocento', serif;
-  margin-top: 0px;
-}
-h2{
-  padding-left: 35%;
+
+h3{
   font-size: 25px;
   color: #33691E;
   font-family: 'Quattrocento', serif;
-  margin-bottom: 0px;
+  text-align: center;
+}
+
+section{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#about{
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+#merchandise > *{
+  margin-left: 30px;
+  margin-right: 30px;
+  text-align: center;
+}
+
+.store{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #33691E;
+  font-family: 'Quattrocento', serif;
+  margin-left: 30px;
+  margin-right: 30px;*/
+}
+
+.store > *{
+  margin: 5px;
+}
+
+#contact-us{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+button{
+  width: 300px;
+  heigth: 40px;
+  font-size: 30px;
+  color: #33691E;
+  font-family: 'Quattrocento', serif;
+  background-color: #757575;
+}
+
+fieldset{
+  display:flex;
+  flex-direction: colimn;
+  text-align: center;
+  background-color: #BDBDBD;
+}
+
+fieldset > *{
+  margin-top: 30px;
+  background-color: #BDBDBD;
+}
+
+label{
+color: #33691E;
+font-family: 'Quattrocento', serif;
+font-size: 20px;
+background-color: #BDBDBD;
+margin-left: 20px;
+}
+
+table{
+  font-family: Verdana;
+  font-size: 20px;
+  color: #212121;
+  margin-top: 50px;
+}
+
+a{
+  margin-top: 30px;
+  font-size: 30px;
 }
