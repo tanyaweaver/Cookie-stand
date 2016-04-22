@@ -71,13 +71,6 @@ section{
   margin: 5px;
 }
 
-#contact-us{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
 button{
   width: 300px;
   heigth: 40px;
