@@ -1,22 +1,100 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Customer Page</title>
-   <link rel="stylesheet" type="text/css" href='css/style.css'/>
-   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <title>Welcome to Pat's Salmon Cookie Shop</title>
+    <link rel="stylesheet" type="text/css" href='css/style.css'/>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-  <div>
-  <h1>Salmon Cookie Shop</h1>
-  <p id="moto">~ Salmon cookies are the ideal match for a steaming cup of coffee on a grey Seattle morning~</p>
 
-  <h2>Locations in Seattle WA (6 am - 9 pm):</h2>
-  <p id="location">&#9733 Pike Place &#9733 SeaTac Airport &#9733  Bellevue Square  &#9733 Southcenter  &#9733  Alki &#9733</p>
-  <img src="images/salmon.png"/>
-  <p id="text"> Our cookies are not only shaped like salmon, they are actually made with salmon. <br />
-   Tourists go gaga for Salmon Cookies and locals begrudgingly fall in love with them! </p>
+<header class="row">
+    <img src="images/salmon.png" width=400px height=150px/>
+    <h1 id="store-name">Pat's Salmon Cookie Shop</h1>
+    <img  src="images/seattle.png" width=400px height=150px/>
+</header>
 
+<section>
+     <h2>About us</h2>
+     <p id="about">Pat Cookielover, a Seattle native, has been a passionate baker for many years.
+         Everyone loved her signature cookies that were made from salmon.
+         First Pat's Salmon Cookie Shop was opened in Seattle in 2016, at Pike Place Market.
+         Another four locations were open shortly after due to incredible popularity of her cookies.
+         Treat yourself!
+     </p>
+     <img src="images/family.jpg"/>
+     <h2>Available in every store and online:</h2>
+
+    <div id="merchandise" class="row">
+      <div>
+       <img src="images/chinook.jpg" width=300px height=150px/>
+       <p>Poster</p>
+     </div>
+     <div>
+      <img src="images/frosted-cookie.jpg" width=200px height=150px/>
+       <p>Salmon Cookies</p>
+     </div>
+     <div>
+       <img src="images/cutter.jpeg" width=150px height=150px/>
+       <p>Cookie cutter</p>
+     </div>
+     <div>
+       <img src="images/shirt.jpg" width=150px height=150px/>
+       <p>Shirt</p>
+     </div>
+     <div>
+       <img src="images/fish.jpg"/ width=200px height=150px>
+       <p>Cookie Gift Set</p>
+     </div>
 </div>
+<div>
+  <button id="button">Order online</button>
+  </div>
+     <h2>Our locations open daily, 6 am - 9 pm:</h2>
+
+    <div class="row">
+
+      <div class="store">
+      <h3>Pike Place Market</h3>
+        <p> 123 Pike Str</p>
+        <p>Seattle, Wa 98105</p>
+        <p>(206)765-7497</p>
+      </div>
+
+      <div class="store">
+      <h3>Sea Tac Airport</h3>
+        <p>234 Airport Way</p>
+        <p>Tukwila,WA 95296</p>
+        <p>(206)634-7867</p>
+      </div>
+
+      <div class="store">
+      <h3>Bellevue Square</h3>
+        <p> 765 Square St</p>
+        <p>Bellevue, WA 98654</p>
+        <p>(206)765-7497</p>
+      </div>
+
+      <div class="store">
+      <h3>South Center Mall</h3>
+        <p> 675 Mall St</p>
+        <p>Renton, WA 98354</p>
+        <p>(206)325-7876</p>
+      </div>
+
+      <div class="store">
+      <h3>Alki Beach</h3>
+        <p>985 West Str</p>
+        <p>Seattle,WA 95296</p>
+        <p>(206)354-4567</p>
+      </div>
+    </section>
+
+    <div id="contact-us">
+      <button id="button">Contact Us</button>
+      <button id="button">Careers</button>
+    </div>
+
 </body>
 </html>
